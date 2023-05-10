@@ -9,6 +9,7 @@ let todos: TodoItem[] = [
   new TodoItem(4, "Finish Loki", true),
 ];
 let collection: TodoList = new TodoList("Dmitrii", todos);
+let showCompleted = true;
 console.clear();
 function displayTodoList(): void {
   console.log(
@@ -19,22 +20,24 @@ function displayTodoList(): void {
 }
 
 enum Commands {
-  Quit = "Quit",
-}
-function promptUser(): void {
-  console.clear();
-  displayTodoList();
-  inquirer
-    .prompt({
+    Toggle = "Show/Hide Completed",
+    Quit = "Quit"
+  }
+  function promptUser(): void {
+    console.clear();
+    displayTodoList();
+    inquirer.prompt({
       type: "list",
       name: "command",
       message: "Choose option",
-      choices: Object.values(Commands),
-    })
-    .then((answers) => {
-      if (answers["command"] !== Commands.Quit) {
-        promptUser();
+      choices: Object.values(Command),
+   }).then(answers => {
+      switch(answers["command"]) {
+        case Commands.Toggle:
+           showCompleted = !showCompleted;
+           promptUser();
+           break;
       }
-    });
-}
-promptUser();
+   })
+ }
+ promptUser();

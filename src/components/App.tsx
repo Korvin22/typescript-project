@@ -5,7 +5,7 @@ import {Action, State, ContextState} from "../types/stateType";
 import {todoReducer} from "../reducers/todoReducer";
 import {observer} from 'mobx-react-lite';
 import {AppStoreProvider} from '../../stores/AppStore/AppStoreProvider'; 
-import {useAppStore} from '../../stores/AppStore/AppStore'; // index.jsx
+import {useAppStore} from '../../stores/AppStore/AppStoreProvider'; // index.jsx
 import NewTask from "./NewTask";
 import TasksList from "./TasksList";
 
